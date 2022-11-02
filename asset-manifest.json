@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/react-gh-pages/static/css/main.7cb82979.css",
-    "main.js": "/react-gh-pages/static/js/main.40d07e1a.js",
-    "index.html": "/react-gh-pages/index.html",
-    "main.7cb82979.css.map": "/react-gh-pages/static/css/main.7cb82979.css.map",
-    "main.40d07e1a.js.map": "/react-gh-pages/static/js/main.40d07e1a.js.map"
+    "main.css": "/react-booking/static/css/main.7cb82979.css",
+    "main.js": "/react-booking/static/js/main.40d07e1a.js",
+    "index.html": "/react-booking/index.html",
+    "main.7cb82979.css.map": "/react-booking/static/css/main.7cb82979.css.map",
+    "main.40d07e1a.js.map": "/react-booking/static/js/main.40d07e1a.js.map"
   },
   "entrypoints": [
     "static/css/main.7cb82979.css",
