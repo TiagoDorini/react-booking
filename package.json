@@ -1,6 +1,7 @@
 {
   "name": "react-booking",
   "version": "0.1.0",
+  "homepage": "https://TiagoDorini.github.io/react-booking",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.5",
@@ -23,6 +24,7 @@
     "clsx": "^1.2.1",
     "date-fns": "^2.29.3",
     "dayjs": "^1.11.6",
+    "gh-pages": "^4.0.0",
     "immer-reducer": "^0.7.13",
     "moment": "^2.29.4",
     "react": "^18.2.0",
@@ -41,7 +43,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [

@@ -16,7 +16,7 @@ export const ReactBookingApp = () => {
       <Provider store={store}>
         <ThemeProvider theme={theme}>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <Router>
+            <Router basename={process.env.PUBLIC_URL}>
               <BookingPages />
             </Router>
           </LocalizationProvider>
