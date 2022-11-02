@@ -19,7 +19,7 @@ export const useBooking = () => {
     dispatch(edit(editBooking))
   }, [])
 
-  const userReservations = useSelector((state: RootState) => state.booking)
+  const userReservations = useSelector((state: RootState) => state.hotel.bookings)
   const bookedIds = userReservations.map((reservation) => reservation.hotel.id)
 
   return { addBooking, deleteBooking, editBooking, userReservations, bookedIds }

@@ -1,29 +1,39 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Booking } from '../types/Booking'
 
-const initialState: Booking[] = []
+interface InitialStateValues {
+  bookings: Booking[]
+}
+
+const initialState: InitialStateValues = {
+  bookings: [],
+}
 
 const booking = createSlice({
   name: 'booking',
   initialState,
   reducers: {
     add(state, action: PayloadAction<Booking>) {
-      state.push(action.payload)
+      state.bookings = [...state.bookings, action.payload]
     },
     remove(state, action: PayloadAction<number>) {
-      const booking = state.find(
-        (booking) => booking.hotel.id === action.payload
+      const bookingFound = state.bookings.find(
+        (element) => element.hotel.id === action.payload
       )
-      if (!!booking) {
-        const index = state.indexOf(booking, 0)
-        state = state.splice(index, 1)
+      if (!!bookingFound) {
+        const index = state.bookings.indexOf(bookingFound, 0)
+        state.bookings.splice(index, 1)
       }
     },
     edit(state, action: PayloadAction<Booking>) {
-      state.forEach((element) => {
-        if (element.hotel.id === action.payload.hotel.id)
-          element = { ...action.payload }
-      })
+      const index = state.bookings.findIndex(
+        (element) => element.hotel.id === action.payload.hotel.id
+      )
+      state.bookings[index] = {
+        ...state.bookings[index],
+        endDate: action.payload.endDate,
+        startDate: action.payload.startDate,
+      }
     },
   },
 })

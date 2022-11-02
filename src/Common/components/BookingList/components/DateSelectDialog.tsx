@@ -14,7 +14,7 @@ import {
 import { createStyles, makeStyles } from '@mui/styles'
 import { MobileDatePicker } from '@mui/x-date-pickers'
 import { format, parse } from 'date-fns'
-import { FormEvent, useEffect, useState } from 'react'
+import { FormEvent, useCallback, useEffect, useState } from 'react'
 import { useBooking } from '../hooks/useBooking'
 import { Booking } from '../types/Booking'
 import { HotelResponse } from '../types/HotelResponse'
@@ -67,14 +67,14 @@ export const DateSelectDialog = ({
 
   const { addBooking, editBooking, deleteBooking } = useBooking()
 
-  const configMinStartDate = () => {
+  const configMinStartDate = useCallback(() => {
     setMinStartDate((date) => {
       date.setDate(minStartDate.getDate() - 1)
       return date
     })
-  }
+  }, [])
 
-  const configMinEndDate = () => {
+  const configMinEndDate = useCallback(() => {
     if (!!startDate) {
       setMinEndDate(() => {
         const newDate = new Date()
@@ -82,27 +82,27 @@ export const DateSelectDialog = ({
         return newDate
       })
     }
-  }
-
-  const mapSelectedBooking = (selectedBooking?: Booking) => {
-    if (!!selectedBooking) {
-      setEndDate(parse(selectedBooking.endDate, 'MM/dd/yyyy', new Date()))
-      setStartDate(parse(selectedBooking.startDate, 'MM/dd/yyyy', new Date()))
-    }
-  }
+  }, [startDate])
 
   const resetDialog = () => {
     setStartDate(null)
     setEndDate(null)
     setMinStartDate(new Date())
     setMinEndDate(null)
+
+    if (!!selectedBooking) {
+      setStartDate(parse(selectedBooking.startDate, 'MM/dd/yyyy', new Date()))
+      setEndDate(parse(selectedBooking.endDate, 'MM/dd/yyyy', new Date()))
+    }
   }
 
   useEffect(() => {
-    resetDialog()
-    mapSelectedBooking(selectedBooking)
     configMinStartDate()
-  }, [selectedHotel?.id, selectedBooking?.hotel.id])
+  }, [])
+
+  useEffect(() => {
+    resetDialog()
+  }, [selectedBooking?.endDate, selectedBooking?.startDate])
 
   useEffect(() => {
     configMinEndDate()

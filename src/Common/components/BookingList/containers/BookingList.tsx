@@ -97,8 +97,10 @@ export const BookingList = ({
   const classes = useStyles()
   const [openDialog, setOpenDialog] = useState(false)
   const [openEditDialog, setOpenEditDialog] = useState(false)
-  const [selectedHotel, setSelectedHotel] = useState<HotelResponse>()
-  const [selectedBooking, setSelectedBooking] = useState<Booking>()
+  const [selectedHotel, setSelectedHotel] = useState<
+    HotelResponse | undefined
+  >()
+  const [selectedBooking, setSelectedBooking] = useState<Booking | undefined>()
 
   const handleOpenDialog = (hotel: HotelResponse) => {
     setSelectedHotel(hotel)
@@ -111,18 +113,22 @@ export const BookingList = ({
   }
 
   const handleCloseDialog = () => {
+    setSelectedHotel(undefined)
     setOpenDialog(false)
   }
 
   const handleCloseEditDialog = () => {
+    setSelectedBooking(undefined)
     setOpenEditDialog(false)
   }
 
   const handleConfirmDialog = () => {
+    setSelectedHotel(undefined)
     setOpenDialog(false)
   }
 
   const handleConfirmEditDialog = () => {
+    setSelectedBooking(undefined)
     setOpenEditDialog(false)
   }
 
