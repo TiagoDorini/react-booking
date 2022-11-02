@@ -92,25 +92,26 @@ export const DateSelectDialog = ({
   }
 
   const resetDialog = () => {
-    if (!open) {
-      setStartDate(null)
-      setEndDate(null)
-      setMinStartDate(new Date())
-      setMinEndDate(null)
-    }
+    setStartDate(null)
+    setEndDate(null)
+    setMinStartDate(new Date())
+    setMinEndDate(null)
   }
 
   useEffect(() => {
+    console.log('aqui')
     resetDialog()
     mapSelectedBooking(selectedBooking)
     configMinStartDate()
-  }, [selectedHotel, selectedBooking, open])
+  }, [selectedHotel?.id, selectedBooking?.hotel.id])
 
   useEffect(() => {
+    console.log('aqui 1')
     configMinEndDate()
   }, [startDate])
 
   useEffect(() => {
+    console.log('aqui 2')
     setIsValid(!!startDate && !!endDate)
   }, [startDate, endDate])
 
